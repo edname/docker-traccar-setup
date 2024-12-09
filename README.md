@@ -1,6 +1,6 @@
 # docker-traccar-setup
 
-This guide isis for Docker Traccar setup instructions
+This guide is for Docker Traccar setup instructions.
 
 1. Create work directories:
 ```bash
@@ -57,3 +57,9 @@ volumes:
 ```bash
 sudo docker compose up -d
 ```
+
+7. Acces Traccar web interface to create Admin user
+```bash
+127.0.0.1:8082
+```
+
