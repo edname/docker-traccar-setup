@@ -4,7 +4,7 @@ This guide isis for Docker Traccar setup instructions
 
 1. Create work directories:
 ```bash
-mkdir -p /opt/traccar/logs
+mkdir -p /opt/traccar/conf/
 ```
 
 2. Get default traccar.xml:
@@ -12,7 +12,7 @@ mkdir -p /opt/traccar/logs
 sudo docker run --rm --entrypoint cat traccar/traccar:latest /opt/traccar/conf/traccar.xml > ~/traccar.xml
 ```
 ```bash
-sudo mv ~/traccar.xml /opt/traccar/
+sudo mv ~/traccar.xml /opt/traccar/conf/
 ``` 
 
 3. Edit traccar.xml
@@ -23,10 +23,8 @@ sudo mv ~/traccar.xml /opt/traccar/
     <entry key='database.password'>password</entry>
 ```
 
-4. Create /opt/traccar/logs/docker-compose.yml
+4. Create /opt/traccar/docker-compose.yml
 ```bash
-version: '3.8'
-
 services:
   postgres:
     image: postgres
@@ -43,9 +41,9 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./traccar/logs:/opt/traccar/logs
-      - ./traccar/conf:/opt/traccar/conf
-      - ./traccar/data:/opt/traccar/data
+      - /traccar/logs:/opt/traccar/logs
+      - /traccar/conf:/opt/traccar/conf
+      - /traccar/data:/opt/traccar/data
     ports:
       - "8082:8082"
       - "5000-5150:5000-5150"
