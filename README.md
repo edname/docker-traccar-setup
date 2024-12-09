@@ -16,8 +16,46 @@ sudo mv ~/traccar.xml /opt/traccar/
 ``` 
 
 3. Edit traccar.xml
+```bash
+    <entry key='database.driver'>org.postgresql.Driver</entry>
+    <entry key='database.url'>jdbc:postgresql://traccar-postgres-1/traccar</entry>
+    <entry key='database.user'>postgres</entry>
+    <entry key='database.password'>password</entry>
+```
 
-4. Create container:
+4. Create docker compose
+```bash
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: traccar
+      POSTGRES_PASSWORD: password
+    expose:
+      - 5432
+    volumes:
+      - postgres-traccar-datavolume:/var/lib/postgresql/data
+
+  traccar:
+    image: traccar/traccar:latest
+    depends_on:
+      - postgres
+    volumes:
+      - ./traccar/logs:/opt/traccar/logs
+      - ./traccar/conf:/opt/traccar/conf
+      - ./traccar/data:/opt/traccar/data
+    ports:
+      - "8082:8082"
+      - "5000-5150:5000-5150"
+      - "5000-5150:5000-5150/udp"
+
+volumes:
+  postgres-traccar-datavolume:
+```
+
+6. Create container:
 ```bash
 docker run \
 --name traccar \
