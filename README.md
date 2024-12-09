@@ -23,7 +23,7 @@ sudo mv ~/traccar.xml /opt/traccar/
     <entry key='database.password'>password</entry>
 ```
 
-4. Create docker compose
+4. Create /opt/traccar/logs/docker-compose.yml
 ```bash
 version: '3.8'
 
