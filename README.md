@@ -63,3 +63,14 @@ sudo docker compose up -d
 127.0.0.1:8082
 ```
 
+8. Lets test device tracking. First we have to create device with name and identifier as:
+```bash
+TracTest
+```
+
+9. Lets send some dummy data to this device. If you are connected on the DEV machine you can send it to Localhost. Otherwise you can enter the IP of the server.
+```bash
+curl -X POST 'http://localhost:5055/?id=TracTest&lat=54.698475&lon=25.263613&speed=5'
+```
+
+
