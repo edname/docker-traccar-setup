@@ -9,13 +9,10 @@ mkdir -p /opt/traccar/logs
 
 2. Get default traccar.xml:
 ```bash
-cd ~
+sudo docker run --rm --entrypoint cat traccar/traccar:latest /opt/traccar/conf/traccar.xml > ~/traccar.xml
 ```
 ```bash
-docker run --rm --entrypoint cat traccar/traccar:latest /opt/traccar/conf/traccar.xml > traccar.xml
-```
-```bash
-sudo mv traccar.xml /opt/traccar/
+sudo mv ~/traccar.xml /opt/traccar/traccar.xml
 ``` 
 
 
