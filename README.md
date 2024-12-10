@@ -1,4 +1,4 @@
-# How to install and setup traccar on docker and portainer
+# How to install and setup traccar on docker
 
 ## docker-traccar-setup guide
 
